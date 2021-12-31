@@ -1,4 +1,28 @@
 body{
-    background-color: aqua;
+    background: linear-gradient(180deg, rgba(185,131,255,1) 0%, rgba(148,218,255,1) 50%, rgba(153,254,255,1) 100%);
+    background-color: rgba(153,254,255,1);
+    background-repeat: no-repeat;
+    text-align: center;
     margin: 0;
+}
+
+table {
+    padding: 1rem auto;
+}
+
+th {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+td {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: .4rem;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
 }

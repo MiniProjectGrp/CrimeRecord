@@ -2,8 +2,19 @@
 const express = require('express');
 const app = express();
 
-const PORT = 4000;
+app.set('view engine', 'ejs');
+app.use("/styles",express.static(__dirname + "/styles"));
+
+const PORT = 3000;
+
+app.get("/", (req, res) => {
+    res.render("index");
+});
+
+app.get("/crime", (req, res) => {
+    res.render("crime");
+});
 
 app.listen(PORT, () => {
-    console.log("Crime Record Backend Server is running on port : " + PORT);
+    console.log("Crime Record Server is running on port : " + PORT);
 });

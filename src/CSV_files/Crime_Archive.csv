@@ -1,4 +1,20 @@
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ut reprehenderit corporis repellat, laboriosam quibusdam minima, similique ad quasi obcaecati, nihil adipisci tempore libero! Iusto dolorem id aliquam modi reiciendis.,SC,CRN7003
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ut reprehenderit corporis repellat, laboriosam quibusdam minima, similique ad quasi obcaecati, nihil adipisci tempore libero! Iusto dolorem id aliquam modi reiciendis.,DC,CRN7014
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ut reprehenderit corporis repellat, laboriosam quibusdam minima, similique ad quasi obcaecati, nihil adipisci tempore libero! Iusto dolorem id aliquam modi reiciendis.,DC,CRN7009
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ut reprehenderit corporis repellat, laboriosam quibusdam minima, similique ad quasi obcaecati, nihil adipisci tempore libero! Iusto dolorem id aliquam modi reiciendis.,HC,CRN7001
+Accused is found Guilty,SC,CRN7001
+Accused is found Not Guilty,SC,CRN7002
+Case is Pending,SC,CRN7003
+Case is Pending,SC,CRN7004
+Case is Pending,HC,CRN7005
+Case is Pending,HC,CRN7006
+Case is Pending,HC,CRN7007
+Case is Pending,HC,CRN7008
+Accused is found Guilty,HC,CRN7009
+Accused is found Guilty,HC,CRN7010
+Accused is found Guilty,HC,CRN7011
+Accused is found Not Guilty,HC,CRN7012
+Case is Pending,DC,CRN7013
+Case is Pending,DC,CRN7014
+Case is Pending,DC,CRN7015
+Case is Pending,DC,CRN7016
+Case is Pending,DC,CRN7017
+Accused is found Not Guilty,DC,CRN7018
+Accused is found Not Guilty,DC,CRN7019
+Accused is found Guilty,DC,CRN7020

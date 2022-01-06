@@ -1,0 +1,5 @@
+SELECT CR.CRN, C.name, CR.location, CR.type_of_crime, CR.date_of_crime, C.Phone_no, F.fir_id, F.summary
+FROM Criminal C, Crime CR, Crime_Committed CC, FIR F
+WHERE CC.Criminal_id = C.Criminal_id
+AND CR.CRN = CC.CRN
+AND CR.fir_id = F.fir_id;

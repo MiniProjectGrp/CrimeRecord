@@ -38,9 +38,9 @@ async function getData (sqlQuery) {
     return data;
 }
 
-getData(`select * from crime;`).then((data) => {
-    console.log(data);
-});
+// getData(`select * from crime;`).then((data) => {
+//     console.log(data);
+// });
 
 // home route / index page.
 app.get("/", (req, res) => {

@@ -1,5 +1,7 @@
-SELECT C.Criminal_id, C.name, C.address, C.Phone_no, CR.CRN, F.fir_id
+SELECT C.Criminal_id, C.name, C.address, C.Phone_no, count(CR.CRN) as Crime_Count
 FROM Criminal C, Crime CR, Crime_Committed CC, FIR F
 WHERE CC.Criminal_id = C.Criminal_id
 AND CR.CRN = CC.CRN
-AND CR.fir_id = F.fir_id;
+AND CR.fir_id = F.fir_id
+group by CC.Criminal_id;
+

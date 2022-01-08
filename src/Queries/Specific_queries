@@ -1,0 +1,24 @@
+// Crime
+SELECT CR.CRN, CR.location, C.name, C.Criminal_id, F.FIR_id, F.Summary, CA.Verdict_date, CA.Verdict
+FROM Criminal C, Crime CR, Crime_Committed CC, FIR F, Crime_Archive CA
+WHERE CC.Criminal_id = C.Criminal_id
+AND CR.CRN = CC.CRN
+AND CR.fir_id = F.fir_id
+AND CA.CRN = CR.CRN
+AND CR.CRN = 'CRN7001';
+
+//Criminal
+SELECT C.Criminal_id, C.name, C.address, C.Phone_no, CR.CRN, F.FIR_id
+FROM Criminal C, Crime CR, Crime_Committed CC, FIR F
+WHERE CC.Criminal_id = C.Criminal_id
+AND CR.CRN = CC.CRN
+AND CR.fir_id = F.fir_id
+AND C.Criminal_id = 'C000008';
+
+//FIR
+SELECT F.fir_id, CR.CRN, F.witness_name, F.area_code, F.Date_of_filing, C.name, C.Criminal_id, F.Summary
+FROM Crime CR, Criminal C, Crime_Committed CC, FIR F
+WHERE CR.CRN = CC.CRN
+AND CR.fir_id = F.fir_id
+AND C.Criminal_id = CC.Criminal_id
+AND F.FIR_id = 'F100017';

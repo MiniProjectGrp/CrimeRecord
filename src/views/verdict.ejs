@@ -7,28 +7,28 @@
         <div>
             <table class="center">
                 <tr>
-                    <th>CRIMINAL ID</th>
-                    <th>name</th>
-                    <th>Address</th>
-                    <th>Phone No</th>
-                    <th>Crime Count</th>
+                    <th>CRN</th>
+                    <th>FIR ID</th>
+                    <th>court id</th>
+                    <th>verdict</th>
+                    <th>verdict date</th>
                 </tr>
-                <% criminals.forEach((criminal) => {%>
+                <% Verdicts.forEach((verdict) => {%>
                     <tr>
                         <td>
-                            <%= criminal.Criminal_Id%>
+                            <%= verdict.CRN%>
                         </td>
                         <td>
-                            <%= criminal.Name%>
+                            <%= verdict.FIR_ID%>
                         </td>
                         <td>
-                            <%= criminal.Address%>
+                            <%= verdict.Court_id%>
                         </td>
                         <td>
-                            <%= criminal.Phone_no%>
+                            <%= verdict.Verdict%>
                         </td>
                         <td>
-                            <%= criminal.Crime_Count%>
+                            <%= verdict.Verdict_date%>
                         </td>
                     </tr>
                 <%}); %>

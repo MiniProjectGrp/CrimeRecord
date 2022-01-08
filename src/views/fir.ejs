@@ -7,32 +7,32 @@
         <div>
             <table class="center">
                 <tr>
-                    <th>CRN</th>
-                    <th>location</th>
-                    <th>type</th>
-                    <th>date</th>
                     <th>FIR ID</th>
-                    <th>criminal count</th>
+                    <th>CRN</th>
+                    <th>witness name</th>
+                    <th>area code</th>
+                    <th>Data of filing</th>
+                    <th>Criminal Count</th>
                 </tr>
-                <% crimes.forEach((crime) => {%>
+                <% Firs.forEach((fir) => {%>
                     <tr>
                         <td>
-                            <%= crime.CRN%>
+                            <%= fir.Fir_id%>
                         </td>
                         <td>
-                            <%= crime.Location%>
+                            <%= fir.CRN%>
                         </td>
                         <td>
-                            <%= crime.Type_of_crime%>
+                            <%= fir.Witness_name%>
                         </td>
                         <td>
-                            <%= crime.Date_of_crime%>
+                            <%= fir.Area_code%>
                         </td>
                         <td>
-                            <%= crime.Fir_id%>
+                            <%= fir.Date_of_filing%>
                         </td>
                         <td>
-                            <%= crime.Criminal_Count%>
+                            <%= fir.Criminal_Count%>
                         </td>
                     </tr>
                 <%}); %>

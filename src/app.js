@@ -8,7 +8,7 @@ const sqlite3 = require('sqlite3').verbose();
 const open = require('sqlite').open;
 
 const stdin = process.stdin;
-stdin.setRawMode( true );
+// stdin.setRawMode( true );
 stdin.resume();
 stdin.setEncoding( 'utf8' );
 
@@ -49,13 +49,56 @@ app.get("/", (req, res) => {
 
 // crime route / page.
 app.get("/crime", (req, res) => {
-    res.render("crime");
+    getData(`SELECT CR.CRN, CR.location, CR.type_of_crime, CR.date_of_crime, F.fir_id, count(C.name) as Criminal_Count
+    FROM Criminal C, Crime CR, Crime_Committed CC, FIR F
+    WHERE CC.Criminal_id = C.Criminal_id
+    AND CR.CRN = CC.CRN
+    AND CR.fir_id = F.fir_id
+    group by CR.CRN;`).then((crimes) => {
+        res.render("crime", {crimes});
+    });
 });
 
-// crime route / page.
+// criminal route / page.
 app.get("/criminal", (req, res) => {
-    res.render("criminal");
+    getData(`SELECT C.Criminal_id, C.name, C.address, C.Phone_no, count(CR.CRN) as Crime_Count
+    FROM Criminal C, Crime CR, Crime_Committed CC, FIR F
+    WHERE CC.Criminal_id = C.Criminal_id
+    AND CR.CRN = CC.CRN
+    AND CR.fir_id = F.fir_id
+    group by CC.Criminal_id;`).then((criminals) => {
+        res.render("criminal", {criminals});
+    });
 });
+
+// fir route / page.
+app.get("/fir", (req, res) => {
+    getData(`SELECT F.fir_id, CR.CRN, F.witness_name, F.area_code, F.Date_of_filing, Count(CC.Criminal_id) as Criminal_Count
+    FROM Crime CR, Crime_Committed CC, FIR F
+    WHERE CR.CRN = CC.CRN
+    AND CR.fir_id = F.fir_id
+    group by CR.CRN;`).then((Firs) => {
+        res.render("fir", {Firs});
+    });
+});
+
+// verdict route / page.
+app.get("/verdict", (req, res) => {
+    getData(`SELECT CR.CRN, CR.FIR_id, CA.Court_id, CA.Verdict, CA.Verdict_date
+    FROM Crime_Archive CA, Crime CR
+    WHERE CA.CRN = CR.CRN;`).then((Verdicts) => {
+        res.render("verdict", {Verdicts});
+    });
+});
+
+// appelas route / page.
+app.get("/appelas", (req, res) => {
+    getData(`SELECT * FROM Appeals;`).then((Appelas) => {
+        res.render("appeals", {Appelas});
+    });
+});
+
+// res.send("<h1>WAIT IDIOT, IM CODING THAT PAGE</h1>");
 
 // opening the express app and allowing clients to connect to the server on given port.
 const server = app.listen(PORT, () => {

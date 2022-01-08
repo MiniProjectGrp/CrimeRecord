@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('header'); %>
+    </head>
+    <body>
+        <div>
+            <table class="center">
+                <tr>
+                    <th>Area code</th>
+                    <th>Court id</th>
+                    <th>Date of appeal</th>
+                </tr>
+                <% Appelas.forEach((Appela) => {%>
+                    <tr>
+                        <td>
+                            <%= Appela.Area_Code%>
+                        </td>
+                        <td>
+                            <%= Appela.Court_Id%>
+                        </td>
+                        <td>
+                            <%= Appela.Date_appeal%>
+                        </td>
+                    </tr>
+                <%}); %>
+            </table>
+        </div>
+        <%- include('footer'); %>
+    </body>
+</html>

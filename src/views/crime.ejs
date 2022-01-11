@@ -18,7 +18,7 @@
                 <% crimes.forEach((crime) => {%>
                     <tr>
                         <td>
-                            <%= crime.CRN%>
+                            <a href="/crime/<%= crime.CRN%>"><%= crime.CRN%></a>
                         </td>
                         <td>
                             <%= crime.Location%>
@@ -30,7 +30,7 @@
                             <%= crime.Date_of_crime%>
                         </td>
                         <td>
-                            <%= crime.Fir_id%>
+                            <a href="/fir/<%= crime.Fir_id%>"><%= crime.Fir_id%></a>
                         </td>
                         <td>
                             <%= crime.Criminal_Count%>

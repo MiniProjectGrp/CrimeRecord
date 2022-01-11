@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('header'); %>
+    </head>
+    <body>
+        <%- include('nav'); %>
+        <h2><%= criminalData.CrminalId %></h2><br>
+        <strong>Name : </strong><%= criminalData.Name %><br>
+        <strong>Address : </strong><%= criminalData.Address %><br>
+        <strong>Phone No : </strong><%= criminalData.Phone_no %><br><br>
+        <% criminalData.crimes.forEach((crime) => {%>
+            <div>
+                <strong>CRN : </strong><a href="/crime/<%= crime.CRN %>" class="ids"><%= crime.CRN %></a><br>
+                <strong>FIR ID : </strong><a href="/fir/<%= crime.Fir_id %>" class="ids" ><%= crime.Fir_id %></a><br>
+                <strong>Summary : </strong><p><%= crime.summary %></p>
+                <hr><br>
+            </div>
+        <%}); %>
+        <%- include('footer'); %>
+    </body>
+</html>

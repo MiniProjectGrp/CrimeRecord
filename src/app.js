@@ -59,6 +59,34 @@ app.get("/crime", (req, res) => {
     });
 });
 
+app.get("/crime/:cid", (req, res) => {
+    getData(`SELECT CR.CRN, CR.location, C.name, C.Criminal_id, F.FIR_id, F.Summary, CA.Verdict_date, CA.Verdict
+    FROM Criminal C, Crime CR, Crime_Committed CC, FIR F, Crime_Archive CA
+    WHERE CC.Criminal_id = C.Criminal_id
+    AND CR.CRN = CC.CRN
+    AND CR.fir_id = F.fir_id
+    AND CA.CRN = CR.CRN
+    AND CR.CRN ='` + req.params.cid + `';`).then((crime) => {
+        if (crime.length == 0) {
+            res.render("404Page");
+            return;
+        }
+        let crimeData = {};
+        crimeData["CRN"] = crime[0].CRN;
+        crimeData["Location"] = crime[0].Location;
+        crimeData["Verdict_date"] = crime[0].Verdict_date;
+        crimeData["Verdict"] = crime[0].Verdict;
+        crimeData["Fir_id"] = crime[0].Fir_id;
+        crimeData["Fir_summary"] = crime[0].Summary;
+        crimeData["criminals"] = [];
+        crime.forEach((c) => {
+            crimeData["criminals"].push({"CriminalId" : c.Criminal_Id, "name" : c.Name});
+        });
+        // res.send(crimeData);
+        res.render("crimePage", {crimeData});
+    });
+});
+
 // criminal route / page.
 app.get("/criminal", (req, res) => {
     getData(`SELECT C.Criminal_id, C.name, C.address, C.Phone_no, count(CR.CRN) as Crime_Count
@@ -68,6 +96,31 @@ app.get("/criminal", (req, res) => {
     AND CR.fir_id = F.fir_id
     group by CC.Criminal_id;`).then((criminals) => {
         res.render("criminal", {criminals});
+    });
+});
+
+app.get("/criminal/:criminalId", (req, res) => {
+    getData(`SELECT C.Criminal_id, C.name, C.address, C.Phone_no, CR.CRN, F.FIR_id, F.summary
+    FROM Criminal C, Crime CR, Crime_Committed CC, FIR F
+    WHERE CC.Criminal_id = C.Criminal_id
+    AND CR.CRN = CC.CRN
+    AND CR.fir_id = F.fir_id
+    AND C.Criminal_id ='` + req.params.criminalId + `';`).then((criminal) => {
+        if (criminal.length == 0){
+            res.render("404Page");
+            return;
+        }
+        let criminalData = {};
+        criminalData["CrminalId"] = criminal[0].Criminal_Id;
+        criminalData["Name"] = criminal[0].Name;
+        criminalData["Address"] = criminal[0].Address;
+        criminalData["Phone_no"] = criminal[0].Phone_no;
+        criminalData["crimes"] = [];
+        criminal.forEach((crime) => {
+            criminalData["crimes"].push({"CRN" : crime.CRN, "Fir_id" : crime.Fir_id, "summary" : crime.Summary});
+        });
+        // res.send(criminalData);
+        res.render("criminalPage", {criminalData});
     });
 });
 
@@ -82,6 +135,33 @@ app.get("/fir", (req, res) => {
     });
 });
 
+app.get("/fir/:firId", (req, res) => {
+    getData(`SELECT F.fir_id, CR.CRN, F.witness_name, F.area_code, F.Date_of_filing, C.name, C.Criminal_id, F.Summary
+    FROM Crime CR, Criminal C, Crime_Committed CC, FIR F
+    WHERE CR.CRN = CC.CRN
+    AND CR.fir_id = F.fir_id
+    AND C.Criminal_id = CC.Criminal_id
+    AND F.FIR_id ='` + req.params.firId + `';`).then((Fir) => {
+        if (Fir.length == 0){
+            res.render("404Page");
+            return;
+        }
+        let FirData = {};
+        FirData["FirId"] = Fir[0].Fir_id;
+        FirData["CRN"] = Fir[0].CRN;
+        FirData["Witness_name"] = Fir[0].Witness_name;
+        FirData["AreaCode"] = Fir[0].area_code;
+        FirData["Date_of_filing"] = Fir[0].Date_of_filing;
+        FirData["Criminals"] = [];
+        FirData["Summary"] = Fir[0].Summary;
+        Fir.forEach((criminal) => {
+            FirData["Criminals"].push({"CriminalId" : criminal.Criminal_Id, "Name": criminal.Name});
+        });
+        // res.send(FirData);
+        res.render("firPage", {FirData});
+    });
+});
+
 // verdict route / page.
 app.get("/verdict", (req, res) => {
     getData(`SELECT CR.CRN, CR.FIR_id, CA.Court_id, CA.Verdict, CA.Verdict_date
@@ -92,7 +172,7 @@ app.get("/verdict", (req, res) => {
 });
 
 // appelas route / page.
-app.get("/appelas", (req, res) => {
+app.get("/appeals", (req, res) => {
     getData(`SELECT * FROM Appeals;`).then((Appelas) => {
         res.render("appeals", {Appelas});
     });

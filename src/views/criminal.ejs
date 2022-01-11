@@ -17,7 +17,7 @@
                 <% criminals.forEach((criminal) => {%>
                     <tr>
                         <td>
-                            <%= criminal.Criminal_Id%>
+                            <a href="/criminal/<%= criminal.Criminal_Id%>"><%= criminal.Criminal_Id%></a>
                         </td>
                         <td>
                             <%= criminal.Name%>

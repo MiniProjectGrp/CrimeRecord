@@ -17,10 +17,10 @@
                 <% Verdicts.forEach((verdict) => {%>
                     <tr>
                         <td>
-                            <%= verdict.CRN%>
+                            <a href="/crime/<%= verdict.CRN%>"><%= verdict.CRN%></a>
                         </td>
                         <td>
-                            <%= verdict.FIR_ID%>
+                            <a href="/fir/<%= verdict.FIR_ID%>"><%= verdict.FIR_ID%></a>
                         </td>
                         <td>
                             <%= verdict.Court_id%>

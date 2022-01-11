@@ -18,10 +18,10 @@
                 <% Firs.forEach((fir) => {%>
                     <tr>
                         <td>
-                            <%= fir.Fir_id%>
+                            <a href="/fir/<%= fir.Fir_id%>"><%= fir.Fir_id%></a>
                         </td>
                         <td>
-                            <%= fir.CRN%>
+                            <a href="/crime/<%= fir.CRN%>"><%= fir.CRN%></a>
                         </td>
                         <td>
                             <%= fir.Witness_name%>

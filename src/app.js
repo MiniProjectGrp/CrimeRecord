@@ -68,7 +68,7 @@ app.get("/crime/:cid", (req, res) => {
     AND CA.CRN = CR.CRN
     AND CR.CRN ='` + req.params.cid + `';`).then((crime) => {
         if (crime.length == 0) {
-            res.render("404Page");
+            res.status(404).render("404Page");
             return;
         }
         let crimeData = {};
@@ -107,7 +107,7 @@ app.get("/criminal/:criminalId", (req, res) => {
     AND CR.fir_id = F.fir_id
     AND C.Criminal_id ='` + req.params.criminalId + `';`).then((criminal) => {
         if (criminal.length == 0){
-            res.render("404Page");
+            res.status(404).render("404Page");
             return;
         }
         let criminalData = {};
@@ -143,7 +143,7 @@ app.get("/fir/:firId", (req, res) => {
     AND C.Criminal_id = CC.Criminal_id
     AND F.FIR_id ='` + req.params.firId + `';`).then((Fir) => {
         if (Fir.length == 0){
-            res.render("404Page");
+            res.status(404).render("404Page");
             return;
         }
         let FirData = {};

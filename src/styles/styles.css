@@ -3,6 +3,10 @@
     font-family: 'Ubuntu', sans-serif;
     font-family: 'Vujahday Script', cursive; */
 
+*{
+    transition: 200ms ease-in-out;
+}
+
 body{
     /* background: linear-gradient(180deg, rgba(185,131,255,1) 0%, rgba(148,218,255,1) 50%, rgba(153,254,255,1) 100%);
     background-color: rgba(153,254,255,1); */
@@ -75,6 +79,10 @@ hr:after {
     top: -0.7em;
     font-size: 1.5em;
     padding: 0 0.25em;
+}
+
+strong {
+    font-size: 1.15rem;
 }
 
 .center {
